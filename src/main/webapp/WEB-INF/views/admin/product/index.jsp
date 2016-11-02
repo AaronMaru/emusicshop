@@ -1,5 +1,5 @@
 <%@include file="/WEB-INF/views/partials/header.jsp" %>
-    <div class="container-wrapper">
+<div class="container-wrapper">
         <div class="container">
             <div class="page-header">
                 <h1>All Product</h1>
@@ -13,6 +13,7 @@
                         <td>Category</td>
                         <td>Condition</td>
                         <td>Price</td>
+                        <td>Action</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -23,14 +24,20 @@
                             <td>${ product.productCategory }</td>
                             <td>${ product.productCondition }</td>
                             <td>${ product.productPrice }</td>
+                            <td>
+                            	<a href="<c:url value="/product/${ product.id }" />"><span class="glyphicon glyphicon-info-sign"></span></a>
+                            	<a href="<c:url value="/admin/product/delete/${ product.id }" />"><span class="glyphicon glyphicon-remove"></span></a>
+                            </td>
+                            
                         </tr>
                     </c:forEach>
                 </tbody>
             </table>
             
             <a href="<c:url value="/admin/product/add"/>" class="btn btn-primary">Add Product</a>
-            
+	</div>          
+ </div>
             <!-- FOOTER -->
-            <%@include file="/WEB-INF/views/partials/footer.jsp" %>qq
+            <%@include file="/WEB-INF/views/partials/footer.jsp" %>
 
 

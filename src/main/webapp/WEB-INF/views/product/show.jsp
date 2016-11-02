@@ -1,6 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ include file="/WEB-INF/views/partials/header.jsp" %>
-
 <div class="container-wrapper">
     <div class="container">
         <div class="page-header">
@@ -28,4 +27,7 @@
                 </div>
             </div>
         </div>
+	</div>
+</div>
 <script src="<c:url value="/resources/js/product.js"/>"></script>
+<%@include file="/WEB-INF/views/partials/footer.jsp" %>

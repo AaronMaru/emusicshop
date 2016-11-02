@@ -73,7 +73,12 @@ public class ProductDaoImpl implements ProductDao {
 
 	
 	public void addProduct(Product product) {
-		// TODO Auto-generated method stub
+		String sql = "INSERT INTO products"
+				+ "(productname, productcategory, productdecription, productprice, productcondition, productstatus, unitinstock,productmanufacturer) "
+				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+		jdbcTemplate.update(sql , new Object[]
+					{product.getProductName(), product.getProductCategory(), product.getProductDecription(), product.getProductPrice(),
+					product.getProductCondition(), product.getProductStatus(), product.getUnitInStock(), product.getProductManufacturer()});
 		
 	}
 
@@ -82,9 +87,10 @@ public class ProductDaoImpl implements ProductDao {
 		
 	}
 
-	public void deleteProduct(Product product) {
-		// TODO Auto-generated method stub
-		
+	
+	public void deleteProduct(int id) {
+		String sql = "DELETE FROM products WHERE id=?";
+		 jdbcTemplate.update(sql , new Object[]{ id });
 	}
 
 }

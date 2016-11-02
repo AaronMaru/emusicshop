@@ -67,6 +67,13 @@ public class Product {
 	public void setProductManufacturer(String productManufacturer) {
 		this.productManufacturer = productManufacturer;
 	}
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", productName=" + productName + ", productCategory=" + productCategory
+				+ ", productDecription=" + productDecription + ", productPrice=" + productPrice + ", productCondition="
+				+ productCondition + ", productStatus=" + productStatus + ", unitInStock=" + unitInStock
+				+ ", productManufacturer=" + productManufacturer + "]";
+	}
 	
 	
 }

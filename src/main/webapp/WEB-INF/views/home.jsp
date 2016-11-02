@@ -77,6 +77,8 @@
         </div>
         <!-- /.col-lg-4 -->
     </div>
+    
+</div>
     <!-- /.row -->
     <!-- FOOTER -->
     <%@include file="partials/footer.jsp" %>
