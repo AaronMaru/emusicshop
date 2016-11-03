@@ -1,5 +1,8 @@
 package com.emusicshop.model;
 
+
+import org.springframework.web.multipart.MultipartFile;
+
 public class Product {
 	
 	private int id;
@@ -13,6 +16,14 @@ public class Product {
 	private String productManufacturer;
 	
 	
+	private MultipartFile productImage;
+	
+	public MultipartFile getProductImage() {
+		return productImage;
+	}
+	public void setProductImage(MultipartFile productImage) {
+		this.productImage = productImage;
+	}
 	public int getId() {
 		return id;
 	}
@@ -72,7 +83,7 @@ public class Product {
 		return "Product [id=" + id + ", productName=" + productName + ", productCategory=" + productCategory
 				+ ", productDecription=" + productDecription + ", productPrice=" + productPrice + ", productCondition="
 				+ productCondition + ", productStatus=" + productStatus + ", unitInStock=" + unitInStock
-				+ ", productManufacturer=" + productManufacturer + "]";
+				+ ", productManufacturer=" + productManufacturer + ", productImage=" + productImage + "]";
 	}
 	
 	
