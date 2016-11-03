@@ -1,6 +1,7 @@
 package com.emusicshop.model;
 
 
+
 import org.springframework.web.multipart.MultipartFile;
 
 public class Product {
