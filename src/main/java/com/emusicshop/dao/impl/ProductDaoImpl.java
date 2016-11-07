@@ -20,12 +20,12 @@ public class ProductDaoImpl implements ProductDao {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	
+
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+
 	public List<Product> getProductList() {
 		String sql = "SELECT * FROM products";
 		  return jdbcTemplate.query(sql, new RowMapper() {		  
@@ -39,8 +39,8 @@ public class ProductDaoImpl implements ProductDao {
 				product.setProductPrice(rs.getDouble("productprice"));
 				product.setProductCondition(rs.getString("productcondition"));
 				product.setProductStatus(rs.getString("productstatus"));
-				product.setUnitInStock(rs.getString("unitInstock"));
-				product.setProductManufacturer("productmanufacturer");
+				product.setUnitInStock(rs.getString("unitinstock"));
+				product.setProductManufacturer(rs.getString("productmanufacturer"));
 				
 			    return product;
 			}
@@ -48,12 +48,13 @@ public class ProductDaoImpl implements ProductDao {
 		  });
 	}
 
-	public Product getProductById(int id) {
-		String sql = "SELECT * FROM products WHERE id = ?";
-		return jdbcTemplate.query(sql , new Object[]{ id }, new ResultSetExtractor<Product>() {
+	public Product getProductByName(String name) {
+		String sql = "SELECT * FROM products WHERE productname = ?";
+		return jdbcTemplate.query(sql , new Object[]{ name }, new ResultSetExtractor<Product>() {
 
 		   public Product extractData(ResultSet rs) throws SQLException, DataAccessException {
 			   if(rs.next()) {
+
 				   Product product = new Product();
 				   product.setId(rs.getInt("id"));
 				   product.setProductName(rs.getString("productname"));
@@ -63,7 +64,8 @@ public class ProductDaoImpl implements ProductDao {
 				   product.setProductCondition(rs.getString("productcondition"));
 				   product.setProductStatus(rs.getString("productstatus"));
 				   product.setUnitInStock(rs.getString("unitInstock"));
-				   product.setProductManufacturer("productmanufacturer");
+				   product.setProductManufacturer(rs.getString("productmanufacturer"));
+
 				   return product;
 		    }
 			   return null;
@@ -83,14 +85,18 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	public void editProduct(Product product) {
-		// TODO Auto-generated method stub
-		
+		String sql = "UPDATE products SET " +
+				"productname=?, productcategory=?, productdecription=?, productprice=?, productcondition=?, productstatus=?, unitinstock=?, productmanufacturer=? " +
+				"WHERE id=?";
+		jdbcTemplate.update(sql , new Object[]
+				{product.getProductName(), product.getProductCategory(), product.getProductDecription(), product.getProductPrice(),
+						product.getProductCondition(), product.getProductStatus(), product.getUnitInStock(), product.getProductManufacturer(), product.getId()});
 	}
 
 	
-	public void deleteProduct(int id) {
-		String sql = "DELETE FROM products WHERE id=?";
-		 jdbcTemplate.update(sql , new Object[]{ id });
+	public void deleteProduct(String name) {
+		String sql = "DELETE FROM products WHERE productname=?";
+		 jdbcTemplate.update(sql , new Object[]{ name });
 	}
 
 }
